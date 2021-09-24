@@ -1,16 +1,23 @@
 ﻿
 
 using IListenerInterface;
+using System.Diagnostics;
 
 namespace EventLogListener
 {
     class EventLogListener : IListener
     {
-        public string Message { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-        public void SendMessage(string filePath,string message)
+        private EventLog myLog;
+        public int Level { get; private set; }
+        public EventLogListener(int level)
         {
-            throw new System.NotImplementedException();
+            Level = level;
+            myLog = new EventLog("Application");
+           
+        }
+        public void SendMessage(string message)
+        {
+            myLog.WriteEntry(message);
         }
     }
 }

@@ -5,38 +5,26 @@ namespace TextListener
 {
    public class TextListener : IListener
     {
-        public string Message { get; set; }
-        public int Level { get; set; }
-        public TextListener()
+        private const string FILE_PATH = @"C:\Users\PauliusRuikis\Desktop/TextListener2dot3.txt";
+        public int Level { get; private  set; }
+        public TextListener( int level )
         {
-
-        }
-        public TextListener(string message, int level)
-        {
-            Message = message;
             Level = level;
+            if (!File.Exists(FILE_PATH))
+            {
+                using (StreamWriter sw = File.CreateText(FILE_PATH))
+                {
+
+                }
+            }
         }
 
-        // string path = @"C:\Users\PauliusRuikis\Desktop/TextListener.txt";
-        // string txt = "new text";
-        public void SendMessage(string filePath, string message)
+        public void SendMessage(string message)
         {
-            if (!File.Exists(filePath))
-            {
-                using (StreamWriter sw = File.CreateText(filePath))
-                {
-                    sw.WriteLine(message);
-
-                }
-            }
-            else
-            {
-                using (StreamWriter sw = File.AppendText(filePath))
+                using (StreamWriter sw = File.AppendText(FILE_PATH))
                 {
                     sw.WriteLine(message);
                 }
-            }
-
         }
     }
 

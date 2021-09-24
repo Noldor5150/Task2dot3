@@ -8,9 +8,10 @@ namespace Task2dot3
         {
             
             const string JSON_FILE_PATH = @"C:\Users\PauliusRuikis\Desktop/appsettings.json";
-            var listeners = JSONReader.GetListenersFormConfigJson(JSON_FILE_PATH);
+            const string DLL_FILE_PATH = @"C:\Users\PauliusRuikis\source\repos\Task2dot3\";
+            var listeners = JSONReader.GetListenersFromConfigJson(JSON_FILE_PATH, DLL_FILE_PATH);
             Logger logger = new Logger(listeners);
-
+            logger.SendMessage("hello");
         }
     }
 }
